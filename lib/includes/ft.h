@@ -12,9 +12,11 @@ typedef struct	s_game
 	int speed;
 }				t_game;
 
+t_game	game;
+
 int		ft_wrong_input(int ac, char **av);
 
 void	ft_print_args_rules();
-void	ft_start_game(int ac, char **av);
+void	ft_start_game(char **av);
 
 #endif

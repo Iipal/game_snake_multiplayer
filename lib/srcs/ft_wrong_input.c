@@ -2,42 +2,57 @@
 
 void	ft_print_args_rules()
 {
-	printf("\tArguments for start the game:\n");
+	printf("\n\tArguments for start the game:\n");
 	printf("\t 1. Set grid size X.     (min 5 | max 20)\n");
 	printf("\t 2. Set grid size Y.     (min 5 | max 20)\n");
 	printf("\t 3. Choose game speed.   (min 1 | max 5)\n");
-	printf("\nExmaple: ./exe_snake 10 10 3\n");
+	printf("\nExample: ./exe_snake 10 10 3\n");
 }
 
 int		ft_check_args(char **av)
 {
-	int		check_X;
-	int		check_Y;
-	int		check_speed;
 	int		check_error;
 
-	check_X = atoi(av[1]);
-	check_Y = atoi(av[2]);
-	check_speed = atoi(av[3]);
+	game.grid_x = atoi(av[1]);
+	game.grid_y = atoi(av[2]);
+	game.speed = atoi(av[3]);
 	check_error = 0;
 	system("clear");
-	if (check_X < 5 || check_X > 20)
+	if (game.grid_x < 5 || game.grid_x > 20)
 	{
-		check_error = 1;
-		printf("ERROR:\tWrong input for X.\n");
-		printf("\tYou set X: %d, but needed from 5 to 20.\n\n", check_X);
+		check_error++;
+		system("echo -n \"\\e[31mKO:\\e[0m\"");
+		printf("\tWrong value for X.\n");
+		printf("\tYou set X: %d. For start the game needed from 5 to 20.\n", game.grid_x);
 	}
-	if (check_Y < 5 || check_Y > 20)
+	else
 	{
-		check_error = 1;
-		printf("ERROR:\tWrong input for Y.\n");
-		printf("\tYou set Y: %d, but needed from 5 to 20.\n\n", check_Y);
+		system("echo -n \"\\e[32mOK:\\e[0m\"");
+		printf("\tGrid X is optimal size.\n");
 	}
-	if (check_speed < 1 || check_speed > 5)
+	if (game.grid_y < 5 || game.grid_y > 20)
 	{
-		check_error = 1;
-		printf("ERROR:\tWrong input for speed.\n");
-		printf("\tYou set speed: %d, but needed from 1 to 5.\n\n", check_speed);
+		check_error++;
+		system("echo -n \"\\e[31mKO:\\e[0m\"");
+		printf("\tWrong value for Y.\n");
+		printf("\tYou set Y: %d. For start the game needed from 5 to 20.\n", game.grid_y);
+	}
+	else
+	{
+		system("echo -n \"\\e[32mOK:\\e[0m\"");
+		printf("\tGrid Y is optimal size.\n");
+	}
+	if (game.speed < 1 || game.speed > 5)
+	{
+		check_error++;
+		system("echo -n \"\\e[31mKO:\\e[0m\"");
+		printf("\tWrong value for speed.\n");
+		printf("\tYou set speed: %d, For start the game needed from 1 to 5.\n", game.speed);
+	}
+	else
+	{
+		system("echo -n \"\\e[32mOK:\\e[0m\"");
+		printf("\tGame speed is optimal.\n");
 	}
 	if (check_error)
 	{
@@ -51,22 +66,24 @@ int		ft_wrong_input(int ac, char **av)
 {
 	if (strcmp(av[0], "./exe_snake") != 0)
 	{
-		printf("\t**** PIRATE ****\n\n");
+		system("echo \"\\e[31m\t**** PIRATE ****\n\\e[0m\"");
 		printf("\n\nor you just stupid...\n");
 	}
 	else if (ac < 4)
 	{
 		system("clear");
-		printf("ERROR:\tNot enough arguments for start game.\n");
-		printf("\tYou wrie %d arguments, but needed 3.\n\n", ac - 1);
+		system("echo -n \"\\e[31mKO:\\e[0m\"");
+		printf("\tNot enough arguments for start the game.\n");
+		printf("\tYou wrie %d arguments. For start the game needed 3.\n", ac - 1);
 		ft_print_args_rules(ac - 1);
 		return (-1);
 	}
 	else if (ac > 4)
 	{
 		system("clear");
-		printf("ERROR:\tToo much arguments for start game.\n");
-		printf("\tYou write %d arguments, but needed 3.\n\n", ac - 1);
+		system("echo -n \"\\e[31mKO:\\e[0m\"");
+		printf("\tToo much arguments for start the game.\n");
+		printf("\tYou write %d arguments. For start the game needed 3.\n", ac - 1);
 		ft_print_args_rules(ac - 1);
 		return (-1);
 	}
