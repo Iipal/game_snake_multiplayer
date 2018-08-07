@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_game.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 23:25:24 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/07 23:35:56 by _ipal            ###   ########.fr       */
+/*   Created: 2018/08/07 23:21:54 by _ipal             #+#    #+#             */
+/*   Updated: 2018/08/07 23:24:28 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/includes/ft_game.h"
-#include "../lib/includes/ft_menu.h"
+#ifndef FT_GAME_H
+# define FT_GAME_H
 
-int		main(void)
+# include <stdio.h>
+# include <stdlib.h>
+
+typedef struct	s_game
 {
-	short	menu;
+	short	grid_x;
+	short	grid_y;
+	short	speed;
+}				t_game;
 
-	ft_settings_default();
-	menu = ft_main_menu();
-	if (menu == 1)
-		ft_game_start();
-	else if (menu == 2)
-		ft_settings_menu();
-	else if (menu == 0)
-		printf("bye bye =(\n");
-	else
-		system("echo \"\\e[31mWrong input!\\e[0m\"");
-	return (0);
-}
+t_game	game;
+
+void	ft_game_introduction();
+void	ft_game_start();
+
+#endif

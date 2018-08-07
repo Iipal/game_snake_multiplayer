@@ -1,17 +1,20 @@
 CFLAGS = -Wall -Wextra -Werror
 
 LIBSNAKE = lib/libsnake.a
-LIBSRC = lib/srcs/ft_wrong_input.c lib/srcs/ft_start_game.c
-LIBOBJ = ft_wrong_input.o ft_start_game.o
+LIBSRC = lib/srcs/ft_menu.c lib/srcs/ft_game_start.c
+LIBOBJ = ft_menu.o ft_game_start.o
 
-all: lib main clean
+all: lib main fastclean
 
 lib:
-	@gcc $(CFLAGS) -c $(LIBSRC)
+	@gcc $(CFLAGS) -Ilib/includes -c $(LIBSRC)
 	@ar rc $(LIBSNAKE) $(LIBOBJ)
 
 main:
 	@gcc $(CFLAGS) srcs/main.c -Llib -lsnake -o exe_snake
+
+fastclean:
+	@rm -rf $(LIBOBJ)
 
 clean:
 	@rm -rf $(LIBOBJ)
@@ -22,4 +25,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all lib main clean fclean re
+.PHONY: all lib main fastclean clean fclean re
