@@ -1,8 +1,10 @@
 CFLAGS = -Wall -Wextra -Werror
 
 LIBSNAKE = lib/libsnake.a
-LIBSRC = lib/srcs/ft_menu.c lib/srcs/ft_game_start.c
-LIBOBJ = ft_menu.o ft_game_start.o
+LIBSRC = lib/srcs/ft_game_menu.c lib/srcs/ft_game_settings.c \
+		lib/srcs/ft_game_start.c lib/srcs/ft_game_rules.c
+LIBOBJ = ft_game_menu.o ft_game_settings.o \
+		ft_game_start.o ft_game_rules.o
 
 all: lib main fastclean
 
@@ -22,6 +24,7 @@ clean:
 fclean: clean
 	@rm -rf $(LIBSNAKE)
 	@rm -rf exe_snake
+	@rm -rf config
 
 re: fclean all
 
