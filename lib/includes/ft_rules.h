@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_menu.h                                          :+:      :+:    :+:   */
+/*   ft_rules.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 23:19:18 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/08 21:07:54 by _ipal            ###   ########.fr       */
+/*   Created: 2018/08/08 20:26:50 by _ipal             #+#    #+#             */
+/*   Updated: 2018/08/08 20:27:22 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MENU_H
-# define FT_MENU_H
+#ifndef FT_RULES_H
+# define FT_RULES_H
 
-short	ft_menu_main();
-short	ft_menu_gamemode();
-short	ft_menu_settings();
-
-void	ft_switches_main(short main);
-void	ft_switches_gamemode(short gamemode);
-void	ft_switches_settings(short settings);
+void	ft_game_solorules();
+void	ft_game_botrules();
+void	ft_game_pvprules();
 
 #endif

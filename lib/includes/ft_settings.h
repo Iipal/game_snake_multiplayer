@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 14:51:03 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/08 14:52:32 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/08 23:54:20 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define FT_SETTINGS_H
 
 void	ft_settings_change(short setting);
-void	ft_settings_default();
-void	ft_settings_save();
+void	ft_settings_default(t_game *def);
+void	ft_settings_fread();
+void	ft_settings_fsave();
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 20:32:54 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/08 15:27:00 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/09 10:43:52 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "../includes/ft_menu.h"
 #include "../includes/ft_settings.h"
 
-short	ft_main_menu()
+short	ft_menu_main()
 {
 	short	menu;
 
-	menu = -1;
+	menu = FTERROR;
 	system("clear");
 	printf("\t\tWelcome, %s!\n", game.nickname);
 	printf("\tMenu:\n");
@@ -30,11 +30,11 @@ short	ft_main_menu()
 	return (menu);
 }
 
-void	ft_mode_menu()
+short	ft_menu_gamemode()
 {
-	short	mode;
+	short	gamemode;
 
-	mode = -1;
+	gamemode = FTERROR;
 	system("clear");
 	printf("\t\tChoose game mode:\n");
 	printf("\tCooperative:\n");
@@ -44,41 +44,85 @@ void	ft_mode_menu()
 	printf("\t 3. Player1 vs Player2\n\n");
 	printf("\t 0. Exit to main menu\n");
 	printf("\tChoose something: ");
-	scanf("%hi", &mode);
-	if (mode == 1)
-		ft_game_solo();
-	else if (mode == 2)
-		ft_game_bot();
-	else if (mode == 3)
-		ft_game_pvp();
-	else if (mode == 0)
-		ft_main_menu();
-	else
-	{
-		system("clear");
-		system("echo \"\\e[31mWrong input!!\\e[0m\"");
-		sleep(1);
-		system("clear");
-	}
+	scanf("%hi", &gamemode);
+	return (gamemode);
 }
 
-void	ft_settings_menu()
+short	ft_menu_settings()
 {
-	short	setting;
+	short	settings;
 
-	setting = 0;
+	settings = FTERROR;
 	system("clear");
 	printf("\tSettings:\n");
 	printf("\t 1. Set grid size X (current: %hi). ( min 10 | max 30 )\n", game.grid_x);
 	printf("\t 2. Set grid size Y (current: %hi). ( min 10 | max 30 )\n", game.grid_y);
-	printf("\t 3. Set game speed  (current: %hi). ( min 1  | max 5  )\n", game.speed);
-	printf("\t 4. Change nickname (current: %s).", game.nickname);
+	printf("\t 3. Set game speed  (current: %hi ). ( min 1  | max 5  )\n", game.speed);
+	printf("\t 4. Change nickname (current: %s).\n", game.nickname);
 	printf("\t 5. Set default settings.\n\n");
 	printf("\t 0. Exit to main menu.\n");
 	printf("\tChoose something: ");
-	scanf("%hi", &setting);
-	if (setting != 0)
-		ft_settings_change(setting);
-	else
-		ft_main_menu();
+	scanf("%hi", &settings);
+	return (settings);
+}
+
+void	ft_switches_main(short menu)
+{
+	do
+	{
+		switch (menu)
+		{
+			case MAINGAMEMODE: ft_switches_gamemode(ft_menu_gamemode()); break;
+			case MAINSETTINGS: ft_switches_settings(ft_menu_settings()); break;
+			case MAINMENUEXIT:
+			{
+				system("clear");
+				printf("\tbye bye =(\n");
+				sleep(1);
+				system("clear");
+				exit(EXIT_SUCCESS);
+			}
+			default:
+			{
+				system("clear");
+				system("echo \"\\e[31mWrong input!\\e[0m\"");
+				sleep(1);
+				system("clear");
+				exit(EXIT_SUCCESS);
+			}
+		}
+	} while (menu >= MAINMENUEXIT && menu <= MAINSETTINGS);
+}
+
+void	ft_switches_gamemode(short gamemode)
+{
+	do
+	{
+		switch (gamemode)
+		{
+			case MODESOLO: ft_game_solo(); break;
+			case MODEBOT: ft_game_bot(); break;
+			case MODEPVP: ft_game_pvp(); break;
+			case MODEEXIT: ft_switches_main(ft_menu_main()); break;
+			default:
+			{
+				system("clear");
+				system("echo \"\\e[31mWrong input!!\\e[0m\"");
+				sleep(1);
+				system("clear");
+				break;
+			}
+		}
+	} while (gamemode >= MODEEXIT && gamemode <= MODEPVP);
+}
+
+void	ft_switches_settings(short settings)
+{
+	do
+	{
+		if (settings != SETTINGEXIT && (settings >= SETTINGEXIT && settings <= SETTINGDEFAULT))
+			ft_settings_change(settings);
+		else
+			ft_switches_main(ft_menu_main());
+	} while (settings >= SETTINGEXIT && settings <= SETTINGDEFAULT);
 }

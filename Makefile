@@ -1,10 +1,12 @@
 CFLAGS = -Wall -Wextra -Werror
 
 LIBSNAKE = lib/libsnake.a
-LIBSRC = lib/srcs/ft_game_menu.c lib/srcs/ft_game_settings.c \
-		lib/srcs/ft_game_start.c lib/srcs/ft_game_rules.c
-LIBOBJ = ft_game_menu.o ft_game_settings.o \
-		ft_game_start.o ft_game_rules.o
+LIBSRC = lib/srcs/ft_game_menu.c lib/srcs/ft_game_rules.c \
+		lib/srcs/ft_game_settings.c lib/srcs/ft_game_fsettings.c \
+		lib/srcs/ft_game_start.c
+LIBOBJ = ft_game_menu.o ft_game_rules.o \
+		ft_game_settings.o ft_game_fsettings.o \
+		ft_game_start.o 
 
 all: lib main fastclean
 

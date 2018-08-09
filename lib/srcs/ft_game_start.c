@@ -6,10 +6,11 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 22:20:17 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/08 14:21:27 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/08 20:30:13 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/ft_rules.h"
 #include "../includes/ft_game.h"
 
 void	ft_game_solo()

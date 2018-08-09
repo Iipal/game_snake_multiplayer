@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 14:52:45 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/08 15:21:20 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/09 10:46:40 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	ft_settings_change(short setting)
 	t_game	temp;
 	short	err;
 
+	ft_settings_default(&temp);
 	err = 0;
-	if (setting == 1)
+	if (setting == SETTINGGRIDX)
 	{
 		printf("\tSet X to: ");
 		scanf("%hi", &temp.grid_x);
-		if (temp.grid_x >= 10 && temp.grid_x <= 30)
+		if (temp.grid_x >= GRIDMIN && temp.grid_x <= GRIDMAX)
 			game.grid_x = temp.grid_x;
 		else
 		{
@@ -35,11 +36,11 @@ void	ft_settings_change(short setting)
 			sleep(1);
 		}
 	}
-	else if (setting == 2)
+	else if (setting == SETTINGGRIDY)
 	{
 		printf("\tSet Y to: ");
 		scanf("%hi", &temp.grid_y);
-		if (temp.grid_y >= 10 && temp.grid_y <= 30)
+		if (temp.grid_y >= GRIDMIN && temp.grid_y <= GRIDMAX)
 			game.grid_y = temp.grid_y;
 		else
 		{
@@ -49,11 +50,11 @@ void	ft_settings_change(short setting)
 			sleep(1);
 		}
 	}
-	else if (setting == 3)
+	else if (setting == SETTINGGRIDX)
 	{
 		printf("\tSet game speed to: ");
 		scanf("%hi", &temp.speed);
-		if (temp.speed >= 1 && temp.speed <= 5)
+		if (temp.speed >= SPEEDMIN && temp.speed <= SPEEDMAX)
 			game.speed = temp.speed;
 		else
 		{
@@ -63,12 +64,12 @@ void	ft_settings_change(short setting)
 			sleep(1);
 		}
 	}
-	else if (setting == 4)
+	else if (setting == SETTINGNICKNAME)
 	{
 		printf("\tYour new nickname: ");
 		scanf("%s", temp.nickname);
 		if (temp.nickname)
-			game.nickname = strdup(temp.nickname);
+			game.nickname = temp.nickname;
 		else
 		{
 			err++;
@@ -77,22 +78,23 @@ void	ft_settings_change(short setting)
 			sleep(1);
 		}
 	}
-	else if (setting == 5)
-		ft_settings_default();
-	if (err == 0)
-		ft_settings_save();
-	ft_settings_menu();
+	else if (setting == SETTINGDEFAULT)
+		ft_settings_default(&game);
+	if (!err)
+		ft_settings_fsave();
+	ft_switches_settings(ft_menu_settings());
 }
 
-void	ft_settings_default()
+void	ft_settings_default(t_game *def)
 {
-	game.grid_x = 10;
-	game.grid_y = 10;
-	game.speed = 3;
-	game.nickname = "Player1";
+	def->grid_x = DEFAULTGRID;
+	def->grid_y = DEFAULTGRID;
+	def->speed = DEFAULTSPEED;
+	def->nickname = (char *)malloc(sizeof(char) * 64);
+	def->nickname = DEFAULTNICKNAME;
 }
 
-void	ft_settings_save()
+void	ft_settings_fsave()
 {
 	FILE	*config;
 
@@ -109,7 +111,7 @@ void	ft_settings_save()
 	else
 	{
 		system("clear");
-		system("echo \"\\e[31mCannot open the config file.\\e[0m\"");
+		system("echo \"\\e[31mCannot open or create the config file.\\e[0m\"");
 		sleep(1);
 	}
 	fclose(config);
