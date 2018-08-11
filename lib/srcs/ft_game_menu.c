@@ -6,10 +6,11 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 20:32:54 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/09 10:43:52 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/10 00:55:12 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/ft_errors.h"
 #include "../includes/ft_game.h"
 #include "../includes/ft_menu.h"
 #include "../includes/ft_settings.h"
@@ -18,7 +19,7 @@ short	ft_menu_main()
 {
 	short	menu;
 
-	menu = FTERROR;
+	menu = FT_ERROR;
 	system("clear");
 	printf("\t\tWelcome, %s!\n", game.nickname);
 	printf("\tMenu:\n");
@@ -34,7 +35,7 @@ short	ft_menu_gamemode()
 {
 	short	gamemode;
 
-	gamemode = FTERROR;
+	gamemode = FT_ERROR;
 	system("clear");
 	printf("\t\tChoose game mode:\n");
 	printf("\tCooperative:\n");
@@ -52,7 +53,7 @@ short	ft_menu_settings()
 {
 	short	settings;
 
-	settings = FTERROR;
+	settings = FT_ERROR;
 	system("clear");
 	printf("\tSettings:\n");
 	printf("\t 1. Set grid size X (current: %hi). ( min 10 | max 30 )\n", game.grid_x);
@@ -72,11 +73,10 @@ void	ft_switches_main(short menu)
 	{
 		switch (menu)
 		{
-			case MAINGAMEMODE: ft_switches_gamemode(ft_menu_gamemode()); break;
-			case MAINSETTINGS: ft_switches_settings(ft_menu_settings()); break;
-			case MAINMENUEXIT:
+			case MAIN_GAMEMODE: ft_switches_gamemode(ft_menu_gamemode()); break;
+			case MAIN_SETTINGS: ft_switches_settings(ft_menu_settings()); break;
+			case MAIN_MENUEXIT:
 			{
-				system("clear");
 				printf("\tbye bye =(\n");
 				sleep(1);
 				system("clear");
@@ -84,14 +84,13 @@ void	ft_switches_main(short menu)
 			}
 			default:
 			{
-				system("clear");
 				system("echo \"\\e[31mWrong input!\\e[0m\"");
 				sleep(1);
 				system("clear");
 				exit(EXIT_SUCCESS);
 			}
 		}
-	} while (menu >= MAINMENUEXIT && menu <= MAINSETTINGS);
+	} while (menu >= MAIN_MENUEXIT && menu <= MAIN_SETTINGS);
 }
 
 void	ft_switches_gamemode(short gamemode)
@@ -100,29 +99,28 @@ void	ft_switches_gamemode(short gamemode)
 	{
 		switch (gamemode)
 		{
-			case MODESOLO: ft_game_solo(); break;
-			case MODEBOT: ft_game_bot(); break;
-			case MODEPVP: ft_game_pvp(); break;
-			case MODEEXIT: ft_switches_main(ft_menu_main()); break;
+			case MODE_SOLO: ft_game_solo(); break;
+			case MODE_BOT: ft_game_bot(); break;
+			case MODE_PVP: ft_game_pvp(); break;
+			case MODE_EXIT: ft_switches_main(ft_menu_main()); break;
 			default:
 			{
-				system("clear");
 				system("echo \"\\e[31mWrong input!!\\e[0m\"");
 				sleep(1);
 				system("clear");
 				break;
 			}
 		}
-	} while (gamemode >= MODEEXIT && gamemode <= MODEPVP);
+	} while (gamemode >= MODE_EXIT && gamemode <= MODE_PVP);
 }
 
 void	ft_switches_settings(short settings)
 {
 	do
 	{
-		if (settings != SETTINGEXIT && (settings >= SETTINGEXIT && settings <= SETTINGDEFAULT))
+		if (settings != SETTING_EXIT && (settings >= SETTING_EXIT && settings <= SETTING_DEFAULT))
 			ft_settings_change(settings);
 		else
 			ft_switches_main(ft_menu_main());
-	} while (settings >= SETTINGEXIT && settings <= SETTINGDEFAULT);
+	} while (settings >= SETTING_EXIT && settings <= SETTING_DEFAULT);
 }

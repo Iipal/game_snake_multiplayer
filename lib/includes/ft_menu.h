@@ -6,12 +6,30 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 23:19:18 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/08 21:07:54 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/11 00:26:20 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MENU_H
 # define FT_MENU_H
+
+typedef enum	e_gamemode
+{
+	MODE_EXIT,
+	MODE_SOLO,
+	MODE_BOT,
+	MODE_PVP
+}				t_gamemode;
+
+typedef enum	e_mainmenu
+{
+	MAIN_MENUEXIT,
+	MAIN_GAMEMODE,
+	MAIN_SETTINGS
+}				t_mainmenu;
+
+t_gamemode	gamemode;
+t_mainmenu	mainmenu;
 
 short	ft_menu_main();
 short	ft_menu_gamemode();

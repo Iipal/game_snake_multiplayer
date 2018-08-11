@@ -26,7 +26,7 @@ clean:
 fclean: clean
 	@rm -rf $(LIBSNAKE)
 	@rm -rf exe_snake
-	@rm -rf config
+	@rm -rf settings
 
 re: fclean all
 

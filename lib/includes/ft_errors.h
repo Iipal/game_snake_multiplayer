@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_errors.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 23:25:24 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/11 14:48:55 by _ipal            ###   ########.fr       */
+/*   Created: 2018/08/09 15:50:23 by _ipal             #+#    #+#             */
+/*   Updated: 2018/08/09 21:05:31 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/includes/ft_game.h"
-#include "../lib/includes/ft_fsettings.h"
+#ifndef FT_ERRORS_H
+# define FT_ERRORS_H
 
-int		main(void)
+# define FT_ERROR -1
+# define FT_SUCCESS 0
+# define FT_DONE 1
+
+typedef enum	e_err
 {
-	system("clear");
-	ft_fswitches_swfread(ft_fsettings_fread());
-	return (0);
-}
+	ERR_X = -1,
+	ERR_Y = -2,
+	ERR_SPEED = -3,
+	ERR_NICKNAME = -4
+}				t_err;
+
+t_err	errors;
+
+#endif
