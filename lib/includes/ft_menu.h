@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 23:19:18 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/11 00:26:20 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/12 14:01:30 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ typedef enum	e_mainmenu
 t_gamemode	gamemode;
 t_mainmenu	mainmenu;
 
-short	ft_menu_main();
-short	ft_menu_gamemode();
-short	ft_menu_settings();
+short	ft_menu_main(void);
+short	ft_menu_gamemode(void);
+short	ft_menu_settings(void);
 
 void	ft_switches_main(short main);
 void	ft_switches_gamemode(short gamemode);

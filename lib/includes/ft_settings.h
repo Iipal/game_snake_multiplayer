@@ -6,12 +6,14 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 14:51:03 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/11 22:02:58 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/12 13:50:33 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SETTINGS_H
 # define FT_SETTINGS_H
+
+# define BUFF_SIZE 32
 
 # define GRID_MIN 10
 # define GRID_MAX 30
@@ -44,7 +46,7 @@ typedef struct	s_usersets
 t_settings	settingsmenu;
 
 void	ft_settings_change(short setting);
-char	*ft_settings_setnickname(char *nickname, short setmode);
+char	*ft_settings_setnickname(char *nickname);
 void	ft_settings_default(t_game *def);
 void	ft_settings_user(t_usersets *us);
 

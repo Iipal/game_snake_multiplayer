@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 20:14:43 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/11 16:22:14 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/12 14:00:01 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 # define FSETTING_FNICKNAME "nickname: "
 # define FSETTING_FILENAME "settings"
 
-short	ft_fsettings_fread();
-short	ft_fsettings_fread_problem();
+short	ft_fsettings_fread(void);
+short	ft_fsettings_fread_problem(void);
 
 void	ft_fswitches_swfread(short fread);
-void	ft_fsettings_fexample();
+void	ft_fsettings_fexample(void);
 void	ft_fsettings_fread_strparse_data(char *parse, char fp_set);
 void	ft_fsettings_fread_strparse(char *parse);
-void	ft_fsettings_fsave();
+void	ft_fsettings_fsave(void);
 
 #endif

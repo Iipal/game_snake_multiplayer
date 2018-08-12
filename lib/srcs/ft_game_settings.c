@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 14:52:45 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/11 22:01:22 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/12 13:50:34 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_settings_change(short setting)
 		case SETTING_NICKNAME:
 		{
 			printf("\tYour new nickname: ");
-			game.nickname = ft_settings_setnickname(game.nickname, SETTING_USER);
+			game.nickname = ft_settings_setnickname(game.nickname);
 			sleep(1);
 			break;
 		}
@@ -98,36 +98,28 @@ void	ft_settings_change(short setting)
 	ft_switches_settings(ft_menu_settings());
 }
 
-char	*ft_settings_setnickname(char *nickname, short setmode)
-{
-	if ((nickname = (char *)malloc(sizeof(char) * strlen(nickname) + 1)) != NULL)
-	{
-		switch (setmode)
-		{
-			case SETTING_USER:
-			{
-				do
-				{
-					scanf("%s", nickname);
-					if (nickname != NULL && *nickname != 0)
-						return (nickname);
-					else
-						system("echo \"\\e[31mWrong nickname.\\e[0m\"");
-				} while (1);
-			}
-			case SETTING_DEFAULT: return (DEFAULT_NICKNAME);
-			default: printf("Something wrong!\n"); break;
-		}
-	}
-	return (NULL);
-}
-
 void	ft_settings_default(t_game *def)
 {
 	def->grid_x = DEFAULT_GRID;
 	def->grid_y = DEFAULT_GRID;
 	def->speed = DEFAULT_SPEED;
-	def->nickname = ft_settings_setnickname(def->nickname, SETTING_DEFAULT);
+	def->nickname = strdup(DEFAULT_NICKNAME);
+}
+
+char	*ft_settings_setnickname(char *nickname)
+{
+	if ((nickname = (char *)malloc(sizeof(char) * BUFF_SIZE)) != NULL )
+	{
+		do
+		{
+			scanf("%s", nickname);
+			if (nickname != NULL && *nickname != 0)
+				return (nickname);
+			else
+				system("echo \"\\e[31mWrong nickname.\\e[0m\"");
+		} while (1);
+	}
+	return (NULL);
 }
 
 void	ft_settings_user(t_usersets	*us)
@@ -135,12 +127,12 @@ void	ft_settings_user(t_usersets	*us)
 	t_game	temp;
 	char	*tmpnn;
 
-	tmpnn = (char *)malloc(sizeof(char) * 128);
+	tmpnn = (char *)malloc(sizeof(char) * BUFF_SIZE);
 	if (us->USERSETS_GRIDX == 1)
 	{
 		do
 		{
-			printf("Set grid size X: ");
+			printf("Set grid size X (min 10 | max 30): ");
 			scanf("%hi", &temp.grid_x);
 			if (temp.grid_x >= GRID_MIN && temp.grid_x <= GRID_MAX)
 			{
@@ -156,7 +148,7 @@ void	ft_settings_user(t_usersets	*us)
 	{
 		do
 		{
-			printf("Set grid size Y: ");
+			printf("Set grid size Y (min 10 | max 30): ");
 			scanf("%hi", &temp.grid_y);
 			if (temp.grid_y >= GRID_MIN && temp.grid_y <= GRID_MAX)
 			{
@@ -172,7 +164,7 @@ void	ft_settings_user(t_usersets	*us)
 	{
 		do
 		{
-			printf("Set game speed: ");
+			printf("Set game speed (min 1 | max 5): ");
 			scanf("%hi", &temp.speed);
 			if (temp.speed >= SPEED_MIN && temp.speed <= SPEED_MAX)
 			{

@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 15:31:59 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/11 21:51:23 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/12 14:00:39 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_fswitches_swfread(short fread)
 	}
 }
 
-void	ft_fsettings_fexample()
+void	ft_fsettings_fexample(void)
 {
 	printf("\tSettings file example:\n");
 	printf("greedx: 12\ngreedy: 15\nspeed: 3\n");
@@ -150,7 +150,7 @@ void	ft_fsettings_fread_strparse(char *parse)
 	}
 }
 
-short	ft_fsettings_fread()
+short	ft_fsettings_fread(void)
 {
 	FILE	*readfile;
 	long	rf_size;
@@ -184,7 +184,7 @@ short	ft_fsettings_fread()
 	return (FT_SUCCESS);
 }
 
-short	ft_fsettings_fread_problem()
+short	ft_fsettings_fread_problem(void)
 {
 	char	setsettings;
 
@@ -193,10 +193,10 @@ short	ft_fsettings_fread_problem()
 	system("clear");
 	while (1)
 	{
-		printf("Apply default settings or do you configure everything yourself ?(d/y):");
-		scanf("%c", &setsettings);
+		printf("Apply default settings or do you configure everything yourself ?(d/y): ");
 		do
 		{
+			setsettings = getchar();
 			switch (setsettings)
 			{
 				case 'd': case 'D': return (SETTING_DEFAULT);
@@ -208,7 +208,7 @@ short	ft_fsettings_fread_problem()
 	return (FT_ERROR);
 }
 
-void	ft_fsettings_fsave()
+void	ft_fsettings_fsave(void)
 {
 	FILE	*savefile;
 

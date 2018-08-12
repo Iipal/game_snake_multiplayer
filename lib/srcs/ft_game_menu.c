@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 20:32:54 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/10 00:55:12 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/12 14:01:27 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../includes/ft_menu.h"
 #include "../includes/ft_settings.h"
 
-short	ft_menu_main()
+short	ft_menu_main(void)
 {
 	short	menu;
 
@@ -31,7 +31,7 @@ short	ft_menu_main()
 	return (menu);
 }
 
-short	ft_menu_gamemode()
+short	ft_menu_gamemode(void)
 {
 	short	gamemode;
 
@@ -49,7 +49,7 @@ short	ft_menu_gamemode()
 	return (gamemode);
 }
 
-short	ft_menu_settings()
+short	ft_menu_settings(void)
 {
 	short	settings;
 

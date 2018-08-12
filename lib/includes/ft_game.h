@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 23:21:54 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/09 22:41:57 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/12 13:59:20 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef struct	s_game
 
 t_game		game;
 
-void	ft_game_solo();
-void	ft_game_bot();
-void	ft_game_pvp();
+void	ft_game_solo(void);
+void	ft_game_bot(void);
+void	ft_game_pvp(void);
 
 #endif
