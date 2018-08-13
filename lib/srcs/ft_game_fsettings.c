@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 15:31:59 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/12 14:00:39 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/12 23:35:20 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	ft_fswitches_swfread(short fread)
 		}
 		case SETTING_USER:
 		{
-			us.USERSETS_GRIDX = 1;
-			us.USERSETS_GRIDY = 1;
+			us.USERSETS_WIDTH = 1;
+			us.USERSETS_HEIGHT = 1;
 			us.USERSETS_SPEED = 1;
 			us.USERSETS_NICKNAME = 1;
 			ft_settings_user(&us);
@@ -65,8 +65,9 @@ void	ft_fswitches_swfread(short fread)
 void	ft_fsettings_fexample(void)
 {
 	printf("\tSettings file example:\n");
-	printf("greedx: 12\ngreedy: 15\nspeed: 3\n");
-	printf("nickname: ipal\n");
+	printf("%s%d\n%s%d\n%s%s\n", FSETTING_FWIDTH, DEFAULT_GRID,
+								FSETTING_FHEIGHT, DEFAULT_SPEED,
+								FSETTING_FNICKNAME, DEFAULT_NICKNAME);
 }
 
 void	ft_fsettings_fread_strparse_data(char *parse, char fp_set)
@@ -89,8 +90,8 @@ void	ft_fsettings_fread_strparse_data(char *parse, char fp_set)
 			fp_temp[i] = '\0';
 			switch (fp_set)
 			{
-				case 'X': game.grid_x = atoi(fp_temp); break;
-				case 'Y': game.grid_y = atoi(fp_temp); break;
+				case 'W': game.width = atoi(fp_temp); break;
+				case 'H': game.height = atoi(fp_temp); break;
 				case 'S': game.speed = atoi(fp_temp); break;
 				case 'N': game.nickname = strdup(fp_temp); break;
 				default: printf("Someting is wrong...\n"); break;
@@ -110,21 +111,21 @@ void	ft_fsettings_fread_strparse(char *parse)
 	t_usersets	us;
 
 	err = 0;
-	if ((fp_temp = strstr(parse, FSETTING_FGRIDX)) != NULL)
-		ft_fsettings_fread_strparse_data(fp_temp, 'X');
+	if ((fp_temp = strstr(parse, FSETTING_FWIDTH)) != NULL)
+		ft_fsettings_fread_strparse_data(fp_temp, 'W');
 	else
 	{
 		err++;
-		us.USERSETS_GRIDX = 1;
-		system("echo \"\\e[31mWrong settings name for X.\\e[0m\"");
+		us.USERSETS_WIDTH = 1;
+		system("echo \"\\e[31mWrong settings name for width.\\e[0m\"");
 	}
-	if ((fp_temp = strstr(parse, FSETTING_FGRIDY)) != NULL)
-		ft_fsettings_fread_strparse_data(fp_temp, 'Y');
+	if ((fp_temp = strstr(parse, FSETTING_FHEIGHT)) != NULL)
+		ft_fsettings_fread_strparse_data(fp_temp, 'H');
 	else
 	{
 		err++;
-		us.USERSETS_GRIDY = 1;
-		system("echo \"\\e[31mWrong settings name for Y.\\e[0m\"");
+		us.USERSETS_HEIGHT = 1;
+		system("echo \"\\e[31mWrong settings name for height.\\e[0m\"");
 	}
 	if ((fp_temp = strstr(parse, FSETTING_FSPEED)) != NULL)
 		ft_fsettings_fread_strparse_data(fp_temp, 'S');
@@ -215,8 +216,8 @@ void	ft_fsettings_fsave(void)
 	if ((savefile = fopen(FSETTING_FILENAME, "wb+")) != NULL)
 	{
 		fprintf(savefile, "\t\"Snake\" settings file.\n");
-		fprintf(savefile, "%s%hi\n", FSETTING_FGRIDX, game.grid_x);
-		fprintf(savefile, "%s%hi\n", FSETTING_FGRIDY, game.grid_y);
+		fprintf(savefile, "%s%hi\n", FSETTING_FWIDTH, game.width);
+		fprintf(savefile, "%s%hi\n", FSETTING_FHEIGHT, game.height);
 		fprintf(savefile, "%s%hi\n", FSETTING_FSPEED, game.speed);
 		fprintf(savefile, "%s%s\n", FSETTING_FNICKNAME, game.nickname);
 		system("echo \"\\e[32mSettings saved.\\e[0m\"");

@@ -1,0 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_game_initial_n_drawing.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/13 03:27:58 by _ipal             #+#    #+#             */
+/*   Updated: 2018/08/13 03:55:14 by _ipal            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/ft_game.h"
+
+void	ft_init_playfield(void)
+{
+	for (int j = 0; j < y; j++)
+		for (int i = 0; i < x; g_playfield[j][i++] = ' ');
+}
+
+void	ft_init_snake(t_snake *snake)
+{
+	g_playfield[y / 2][x / 2] = '<';
+	snake->head.move_x = y / 2;
+	snake->head.move_y = x / 2;
+	snake->head.dir = RIGHT;
+	snake->tail.move_x = x / 2;
+	snake->tail.move_y = y / 2;
+	snake->tail.dir = RIGHT;
+	snake->new_dir = RIGHT;
+	snake->length = 1;
+	snake->length_buff = 4;
+}
+
+void	ft_redraw_all(t_snake *snake)
+{
+	printf("\x1b[H");
+	for (int i = x + 2; i; i--)
+		putchar('#');
+	putchar('\n');
+	for (int j = 0; j < y; j++;)
+	{
+		putchar('#');
+		for (int i = 0; i < x; i++)
+			putchar(g_playfield[j][i]);
+		putchar('#');
+		putchar('\n');
+	}
+	for (int i = x + 2; i; i--)
+		putchar('#');
+	putchar('\n');
+	printf("Player: %s\tLength: %5lld\tLevel: %3d", game.nickname, snake->length, level);
+}
+
+void	ft_redraw_animation(t_snake *snake)
+{
+	printf("\x1b[%d;%dH", snake->head.x + 2, snake->head.y + 2);
+	if (g_playfield[snake->tail.move_y][snake->tail.move_x] != '-' &&
+			g_playfield[snake->tail.move_y][snake->move_x] != '|')
+		if (snake->head.dir == UP ||
+				snake->head.dir == DOWN)
+			putchar('|');
+		else
+			putchar('-');
+}

@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Werror -Wextra -pedantic -g -std=gnu11
 
 LIBSNAKE = lib/libsnake.a
 LIBSRC = lib/srcs/ft_game_menu.c lib/srcs/ft_game_rules.c \
@@ -15,7 +15,7 @@ lib:
 	@ar rc $(LIBSNAKE) $(LIBOBJ)
 
 main:
-	@gcc $(CFLAGS) srcs/main.c -Llib -lsnake -o exe_snake
+	@gcc $(CFLAGS) srcs/main.c -lrt -Llib -lsnake -o exe_snake
 
 fastclean:
 	@rm -rf $(LIBOBJ)

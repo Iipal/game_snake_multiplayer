@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 22:20:17 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/12 14:04:28 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/13 02:22:04 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	ft_game_solo(void)
 	sleep(1);
 	system("clear");
 	ft_game_solorules();
-	exit(EXIT_SUCCESS);
+	sleep(3);
+	system("clear");
+	ft_game_solo();
 }
 
 void	ft_game_bot(void)

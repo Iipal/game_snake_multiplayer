@@ -6,29 +6,29 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 14:51:03 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/12 13:50:33 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/12 23:27:49 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SETTINGS_H
 # define FT_SETTINGS_H
 
-# define BUFF_SIZE 32
+# define BUFF_SIZE			32
 
-# define GRID_MIN 10
-# define GRID_MAX 30
-# define SPEED_MIN 1
-# define SPEED_MAX 5
+# define GRID_MIN			10
+# define GRID_MAX			30
+# define SPEED_MIN			1
+# define SPEED_MAX 			5
 
-# define DEFAULT_GRID 12
-# define DEFAULT_SPEED 3
-# define DEFAULT_NICKNAME "Player"
+# define DEFAULT_GRID		12
+# define DEFAULT_SPEED		3
+# define DEFAULT_NICKNAME	"Player"
 
 typedef enum	e_settings
 {
 	SETTING_EXIT,
-	SETTING_GRID_X,
-	SETTING_GRID_Y,
+	SETTING_WIDTH,
+	SETTING_HEIGHT,
 	SETTING_SPEED,
 	SETTING_NICKNAME,
 	SETTING_DEFAULT,
@@ -37,8 +37,8 @@ typedef enum	e_settings
 
 typedef struct	s_usersets
 {
-	short	USERSETS_GRIDX;
-	short	USERSETS_GRIDY;
+	short	USERSETS_WIDTH;
+	short	USERSETS_HEIGHT;
 	short	USERSETS_SPEED;
 	short	USERSETS_NICKNAME;
 }				t_usersets;

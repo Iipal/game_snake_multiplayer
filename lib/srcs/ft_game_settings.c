@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 14:52:45 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/12 13:50:34 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/12 23:36:55 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,32 @@ void	ft_settings_change(short setting)
 	err = 0;
 	switch(setting)
 	{
-		case SETTING_GRID_X:
+		case SETTING_WIDTH:
 		{
 			printf("\tSet X to: ");
-			scanf("%hi", &temp.grid_x);
-			if (temp.grid_x >= GRID_MIN && temp.grid_x <= GRID_MAX)
+			scanf("%hi", &temp.width);
+			if (temp.width >= GRID_MIN && temp.width <= GRID_MAX)
 			{
-				game.grid_x = temp.grid_x;
-				system("echo \"\\e[32mSetting for X saved.\\e[0m\"");
+				game.width = temp.width;
+				system("echo \"\\e[32mWidth settings saved.\\e[0m\"");
 				sleep(1);
 			}
 			else
 			{
 				err++;
-				system("echo \"\\e[31mWrong setting for X.\\e[0m\"");
+				system("echo \"\\e[31mWrong setting for width.\\e[0m\"");
 				sleep(1);
 			}
 			break;
 		}
-		case SETTING_GRID_Y:
+		case SETTING_HEIGHT:
 		{
 			printf("\tSet Y to: ");
-			scanf("%hi", &temp.grid_y);
-			if (temp.grid_y >= GRID_MIN && temp.grid_y <= GRID_MAX)
+			scanf("%hi", &temp.height);
+			if (temp.height >= GRID_MIN && temp.height <= GRID_MAX)
 			{
-				game.grid_y = temp.grid_y;
-				system("echo \"\\e[32mSetting for Y saved.\\e[0m\"");
+				game.height = temp.height;
+				system("echo \"\\e[32mHeight settings saved.\\e[0m\"");
 				sleep(1);
 			}
 			else
@@ -100,8 +100,8 @@ void	ft_settings_change(short setting)
 
 void	ft_settings_default(t_game *def)
 {
-	def->grid_x = DEFAULT_GRID;
-	def->grid_y = DEFAULT_GRID;
+	def->width = DEFAULT_GRID;
+	def->height = DEFAULT_GRID;
 	def->speed = DEFAULT_SPEED;
 	def->nickname = strdup(DEFAULT_NICKNAME);
 }
@@ -128,32 +128,32 @@ void	ft_settings_user(t_usersets	*us)
 	char	*tmpnn;
 
 	tmpnn = (char *)malloc(sizeof(char) * BUFF_SIZE);
-	if (us->USERSETS_GRIDX == 1)
+	if (us->USERSETS_WIDTH == 1)
 	{
 		do
 		{
-			printf("Set grid size X (min 10 | max 30): ");
-			scanf("%hi", &temp.grid_x);
-			if (temp.grid_x >= GRID_MIN && temp.grid_x <= GRID_MAX)
+			printf("Set game width (min 10 | max 30): ");
+			scanf("%hi", &temp.width);
+			if (temp.width >= GRID_MIN && temp.width <= GRID_MAX)
 			{
 				system("echo \"\\e[32mOK.\\e[0m\"");
-				game.grid_x = temp.grid_x;
+				game.width = temp.width;
 				break;
 			}
 			else
 				system("echo \"\\e[31mKO.\\e[0m\"");
 		} while (1);
 	}
-	if (us->USERSETS_GRIDY == 1)
+	if (us->USERSETS_HEIGHT == 1)
 	{
 		do
 		{
-			printf("Set grid size Y (min 10 | max 30): ");
-			scanf("%hi", &temp.grid_y);
-			if (temp.grid_y >= GRID_MIN && temp.grid_y <= GRID_MAX)
+			printf("Set game height (min 10 | max 30): ");
+			scanf("%hi", &temp.height);
+			if (temp.height >= GRID_MIN && temp.height <= GRID_MAX)
 			{
 				system("echo \"\\e[32mOK.\\e[0m\"");
-				game.grid_y = temp.grid_y;
+				game.height = temp.height;
 				break;
 			}
 			else
