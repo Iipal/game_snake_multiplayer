@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 23:21:54 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 13:19:55 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 00:27:48 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,26 @@
 
 # define BILLION		1000000000
 
-# define KEY_UP			0x415b1b
-# define KEY_DOWN		0x425b1b
-# define KEY_RIGHT		0x435b1b
-# define KEY_LEFT		0x445b1b
 
 # define FOOD_RARITY	512
 # define LVLUP_LENGTH	50
+
+enum
+{
+	KEY_UP 		= 0x415b1b,
+	KEY_DOWN 	= 0x425b1b,
+	KEY_RIGHT 	= 0x435b1b,
+	KEY_LEFT 	= 0x445b1b
+};
 
 typedef struct	s_game
 {
 	short		width;
 	short		height;
-	short		speed;
 	char		*nickname;
 }				t_game;
 
-typedef enum	e_direct
+typedef enum
 {
 	UP,
 	DOWN,
@@ -60,8 +63,8 @@ typedef struct	s_snake
 	t_direct_point	head;
 	t_direct_point	tail;
 	t_direct		new_dir;
-	unsigned short	length;
-	unsigned short	length_buff;
+	unsigned long	length;
+	unsigned long	length_buff;
 }				t_snake;
 
 typedef	struct	s_pos
@@ -72,17 +75,16 @@ typedef	struct	s_pos
 
 t_game			game;
 t_pos			pos;
-sig_atomic_t	g_run = 1;
+sig_atomic_t	g_run;
 struct termios	g_saved_attributes;
-unsigned char	g_playfield[pos.x][pos.y];
-unsigned short	g_food_counter = 0;
-unsigned short	g_level = 1;
+unsigned short	g_food_counter;
+unsigned short	g_level;
 
-short 	ft_turn_up(t_snake *snake);
-short	ft_turn_down(t_snake *snake);
-short	ft_turn_left(t_snake *snake);
-short	ft_turn_right(t_snake *snake);
-short	ft_process_key(t_snake *snake);
+short 	ft_turn_up(t_snake *snake, char **g_playfield);
+short	ft_turn_down(t_snake *snake, char **g_playfield);
+short	ft_turn_left(t_snake *snake, char **g_playfield);
+short	ft_turn_right(t_snake *snake, char **g_playfield);
+short	ft_process_key(t_snake *snake, char **g_playfield);
 
 void	ft_game_solo(void);
 void	ft_game_bot(void);
@@ -91,12 +93,14 @@ void	ft_game_pvp(void);
 void	ft_reset_input_mode(void);
 void	ft_sighandler(int sig);
 void	ft_set_terminal_mode(void);
-void	ft_init_playfield(void);
-void	ft_init_snake(t_snake *snake);
-void	ft_redraw_all(t_snake *snake);
-void	ft_redraw_animation(t_snake *snake);
-void	ft_move_snake(t_snake *snake);
-void	ft_generate_food(void);
+
+void	ft_init_playfield(char **g_playfield);
+void	ft_init_snake(t_snake *snake, char **g_playfield);
+void	ft_redraw_all(t_snake *snake, char **g_playfield);
+void	ft_redraw_animation(t_snake *snake, char **playfield);
+void	ft_move_snake(t_snake *snake, char **g_playfield);
+
+void	ft_generate_food(char **g_playfield);
 void	ft_level_up(t_snake *snake);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 15:31:59 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/12 23:35:20 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/13 15:30:31 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	ft_fswitches_swfread(short fread)
 		{
 			us.USERSETS_WIDTH = 1;
 			us.USERSETS_HEIGHT = 1;
-			us.USERSETS_SPEED = 1;
 			us.USERSETS_NICKNAME = 1;
 			ft_settings_user(&us);
 			sleep(1);
@@ -66,7 +65,7 @@ void	ft_fsettings_fexample(void)
 {
 	printf("\tSettings file example:\n");
 	printf("%s%d\n%s%d\n%s%s\n", FSETTING_FWIDTH, DEFAULT_GRID,
-								FSETTING_FHEIGHT, DEFAULT_SPEED,
+								FSETTING_FHEIGHT, DEFAULT_GRID,
 								FSETTING_FNICKNAME, DEFAULT_NICKNAME);
 }
 
@@ -92,7 +91,6 @@ void	ft_fsettings_fread_strparse_data(char *parse, char fp_set)
 			{
 				case 'W': game.width = atoi(fp_temp); break;
 				case 'H': game.height = atoi(fp_temp); break;
-				case 'S': game.speed = atoi(fp_temp); break;
 				case 'N': game.nickname = strdup(fp_temp); break;
 				default: printf("Someting is wrong...\n"); break;
 			}
@@ -126,14 +124,6 @@ void	ft_fsettings_fread_strparse(char *parse)
 		err++;
 		us.USERSETS_HEIGHT = 1;
 		system("echo \"\\e[31mWrong settings name for height.\\e[0m\"");
-	}
-	if ((fp_temp = strstr(parse, FSETTING_FSPEED)) != NULL)
-		ft_fsettings_fread_strparse_data(fp_temp, 'S');
-	else
-	{
-		err++;
-		us.USERSETS_SPEED = 1;
-		system("echo \"\\e[31mWrong settings name for game speed.\\e[0m\"");
 	}
 	if ((fp_temp = strstr(parse, FSETTING_FNICKNAME)) != NULL)
 		ft_fsettings_fread_strparse_data(fp_temp, 'N');
@@ -218,7 +208,6 @@ void	ft_fsettings_fsave(void)
 		fprintf(savefile, "\t\"Snake\" settings file.\n");
 		fprintf(savefile, "%s%hi\n", FSETTING_FWIDTH, game.width);
 		fprintf(savefile, "%s%hi\n", FSETTING_FHEIGHT, game.height);
-		fprintf(savefile, "%s%hi\n", FSETTING_FSPEED, game.speed);
 		fprintf(savefile, "%s%s\n", FSETTING_FNICKNAME, game.nickname);
 		system("echo \"\\e[32mSettings saved.\\e[0m\"");
 		sleep(1);

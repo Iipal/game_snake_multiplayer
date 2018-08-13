@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 14:52:45 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/12 23:36:55 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/13 15:32:50 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,6 @@ void	ft_settings_change(short setting)
 			}
 			break;
 		}
-		case SETTING_SPEED:
-		{
-			printf("\tSet game speed to: ");
-			scanf("%hi", &temp.speed);
-			if (temp.speed >= SPEED_MIN && temp.speed <= SPEED_MAX)
-			{
-				game.speed = temp.speed;
-				system("echo \"\\e[32mSetting for game speed saved.\\e[0m\"");
-				sleep(1);
-			}
-			else
-			{
-				err++;
-				system("echo \"\\e[31mWrong setting for game speed.\\e[0m\"");
-				sleep(1);
-			}
-			break;
-		}
 		case SETTING_NICKNAME:
 		{
 			printf("\tYour new nickname: ");
@@ -102,7 +84,6 @@ void	ft_settings_default(t_game *def)
 {
 	def->width = DEFAULT_GRID;
 	def->height = DEFAULT_GRID;
-	def->speed = DEFAULT_SPEED;
 	def->nickname = strdup(DEFAULT_NICKNAME);
 }
 
@@ -154,22 +135,6 @@ void	ft_settings_user(t_usersets	*us)
 			{
 				system("echo \"\\e[32mOK.\\e[0m\"");
 				game.height = temp.height;
-				break;
-			}
-			else
-				system("echo \"\\e[31mKO.\\e[0m\"");
-		} while (1);
-	}
-	if (us->USERSETS_SPEED == 1)
-	{
-		do
-		{
-			printf("Set game speed (min 1 | max 5): ");
-			scanf("%hi", &temp.speed);
-			if (temp.speed >= SPEED_MIN && temp.speed <= SPEED_MAX)
-			{
-				system("echo \"\\e[32mOK.\\e[0m\"");
-				game.speed = temp.speed;
 				break;
 			}
 			else

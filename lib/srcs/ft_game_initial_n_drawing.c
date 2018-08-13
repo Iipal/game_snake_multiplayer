@@ -6,19 +6,19 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 03:27:58 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 13:26:25 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/13 22:57:53 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_game.h"
 
-void	ft_init_playfield(void)
+void	ft_init_playfield(char **g_playfield)
 {
 	for (int j = 0; j < pos.y; j++)
 		for (int i = 0; i < pos.x; g_playfield[j][i++] = ' ');
 }
 
-void	ft_init_snake(t_snake *snake)
+void	ft_init_snake(t_snake *snake, char **g_playfield)
 {
 	g_playfield[pos.y / 2][pos.x / 2] = '<';
 	snake->head.move_x = pos.y / 2;
@@ -32,7 +32,7 @@ void	ft_init_snake(t_snake *snake)
 	snake->length_buff = 4;
 }
 
-void	ft_redraw_all(t_snake *snake)
+void	ft_redraw_all(t_snake *snake, char **g_playfield)
 {
 	printf("\x1b[H");
 	for (int i = pos.x + 2; i; i--)
@@ -49,10 +49,10 @@ void	ft_redraw_all(t_snake *snake)
 	for (int i = pos.x + 2; i; i--)
 		putchar('#');
 	putchar('\n');
-	printf("Player: %s\tLength: %5d\tLevel: %3d", game.nickname, snake->length, g_level);
+	printf("Player: %s\tLength: %5ld\tLevel: %3d", game.nickname, snake->length, g_level);
 }
 
-void	ft_redraw_animation(t_snake *snake)
+void	ft_redraw_animation(t_snake *snake, char **g_playfield)
 {
 	printf("\x1b[%d;%dH", snake->head.move_x + 2, snake->head.move_y + 2);
 	if (g_playfield[snake->tail.move_y][snake->tail.move_x] != '-' &&

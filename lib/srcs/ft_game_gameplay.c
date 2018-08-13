@@ -6,15 +6,15 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 04:22:21 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 13:26:47 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/13 22:23:12 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_game.h"
 
-void	ft_generate_food(void)
+void	ft_generate_food(char **g_playfield)
 {
-	static const short	max_food = (pos.x * pos.y) / FOOD_RARITY + 1;
+	short	max_food = (pos.x * pos.y) / FOOD_RARITY + 1;
 	short				gen_y;
 	short				gen_x;
 
@@ -28,7 +28,7 @@ void	ft_generate_food(void)
 			g_food_counter++;
 		}
 		else
-			ft_generate_food();
+			ft_generate_food(g_playfield);
 	}
 }
 

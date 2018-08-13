@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 20:14:43 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/12 23:25:37 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/13 15:27:29 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # define FSETTING_FWIDTH	"width: "
 # define FSETTING_FHEIGHT	"height: "
-# define FSETTING_FSPEED	"speed: "
 # define FSETTING_FNICKNAME "nickname: "
 # define FSETTING_FILENAME 	"settings"
 

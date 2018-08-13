@@ -6,15 +6,15 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 03:02:14 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 13:18:38 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/13 22:59:04 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_game.h"
 
-short	ft_turn_up(t_snake *snake)
+short	ft_turn_up(t_snake *snake, char **g_playfield)
 {
-	t_direct_point	*head;
+	t_direct_point			*head;
 	char			body_seg;
 	short			success;
 
@@ -23,7 +23,7 @@ short	ft_turn_up(t_snake *snake)
 	switch (head->dir)
 	{
 		case LEFT:	body_seg = '\\'; break;
-		case RIGHT: body_seg = '/';	 break;
+		case RIGHT:	body_seg = '/';	 break;
 		case DOWN:	success = 0;
 		default: goto ret;
 	}
@@ -33,7 +33,7 @@ ret:
 	return (success);
 }
 
-short	ft_turn_down(t_snake *snake)
+short	ft_turn_down(t_snake *snake, char **g_playfield)
 {
 	t_direct_point	*head;
 	char			body_seg;
@@ -44,7 +44,7 @@ short	ft_turn_down(t_snake *snake)
 	switch (head->dir)
 	{
 		case LEFT:	body_seg = '/';  break;
-		case RIGHT: body_seg = '\\'; break;
+		case RIGHT:	body_seg = '\\'; break;
 		case UP:	success = 0;
 		default: goto ret;
 	}
@@ -54,7 +54,7 @@ ret:
 	return (success);
 }
 
-short	ft_turn_left(t_snake *snake)
+short	ft_turn_left(t_snake *snake, char **g_playfield)
 {
 	t_direct_point	*head;
 	char			body_seg;
@@ -75,7 +75,7 @@ ret:
 	return (success);
 }
 
-short	ft_turn_right(t_snake *snake)
+short	ft_turn_right(t_snake *snake, char **g_playfield)
 {
 	t_direct_point	*head;
 	char			body_seg;
@@ -96,9 +96,9 @@ ret:
 	return (success);
 }
 
-short	ft_process_key(t_snake *snake)
+short	ft_process_key(t_snake *snake, char **g_playfield)
 {
-	short	c;
+	int		c;
 	short	snake_move;
 
 	c = 0;
@@ -107,16 +107,16 @@ short	ft_process_key(t_snake *snake)
 	{
 		switch (c)
 		{
-			case KEY_UP:	snake_move = ft_turn_up(snake);		break;
-			case KEY_DOWN:	snake_move = ft_turn_down(snake);	break;
-			case KEY_LEFT:	snake_move = ft_turn_left(snake);	break;
-			case KEY_RIGHT: snake_move = ft_turn_right(snake);	break;
+			case KEY_UP:	snake_move = ft_turn_up(snake, g_playfield);	break;
+			case KEY_DOWN:	snake_move = ft_turn_down(snake, g_playfield);	break;
+			case KEY_LEFT:	snake_move = ft_turn_left(snake, g_playfield);	break;
+			case KEY_RIGHT:	snake_move = ft_turn_right(snake, g_playfield);	break;
 		}
 	}
 	return (snake_move);
 }
 
-void	ft_move_snake(t_snake *snake)
+void	ft_move_snake(t_snake *snake, char **g_playfield)
 {
 	t_direct_point	*head;
 	t_direct_point	*tail;

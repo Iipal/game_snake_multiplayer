@@ -10,7 +10,7 @@ LIBOBJ = ft_game_menu.o ft_game_rules.o \
 		ft_game_settings.o ft_game_fsettings.o \
 		ft_game_start.o ft_game.o ft_game_gameplay.o \
 		ft_game_processing_moves.o ft_game_sys.o \
-		ft_gaem_initial_n_drawing.o
+		ft_game_initial_n_drawing.o
 
 all: lib main fastclean
 

@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 14:51:03 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/12 23:27:49 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/13 15:28:17 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # define SPEED_MAX 			5
 
 # define DEFAULT_GRID		12
-# define DEFAULT_SPEED		3
 # define DEFAULT_NICKNAME	"Player"
 
 typedef enum	e_settings
@@ -29,7 +28,6 @@ typedef enum	e_settings
 	SETTING_EXIT,
 	SETTING_WIDTH,
 	SETTING_HEIGHT,
-	SETTING_SPEED,
 	SETTING_NICKNAME,
 	SETTING_DEFAULT,
 	SETTING_USER
@@ -39,7 +37,6 @@ typedef struct	s_usersets
 {
 	short	USERSETS_WIDTH;
 	short	USERSETS_HEIGHT;
-	short	USERSETS_SPEED;
 	short	USERSETS_NICKNAME;
 }				t_usersets;
 
