@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 02:44:38 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 02:57:44 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/13 13:20:40 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ void	ft_reset_input_mode(void)
 	system("clear");
 }
 
-void	ft_sighandler(short sig)
+void	ft_sighandler(int sig)
 {
-	run = 0;
-	signal(sig, sighandler);
+	g_run = 0;
+	signal(sig, ft_sighandler);
 }
 
 void	ft_set_terminal_mode(void)
 {
 	struct termios	t_attr;
 	
-	setbuff(stdout, NULL);
+	setbuf(stdout, NULL);
 	if (!isatty(STDIN_FILENO))
 	{
 		fprintf(stderr, "Not a terminal.\n");

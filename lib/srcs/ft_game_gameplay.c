@@ -6,21 +6,22 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 04:22:21 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 04:28:31 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/13 13:26:47 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/ft_game.h"
+
 void	ft_generate_food(void)
 {
-	static const short	max_food;
-	int					gen_y;
-	int					gen_x;
+	static const short	max_food = (pos.x * pos.y) / FOOD_RARITY + 1;
+	short				gen_y;
+	short				gen_x;
 
-	max_food = (x * y) / FOOD_RARITY + 1;
 	if (g_food_counter <= max_food)
 	{
-		gen_y = rand() % y;
-		gen_x = rand() % x;
+		gen_y = rand() % pos.y;
+		gen_x = rand() % pos.x;
 		if (g_playfield[gen_y][gen_x] == ' ')
 		{
 			g_playfield[gen_y][gen_x] = '@';
@@ -33,9 +34,8 @@ void	ft_generate_food(void)
 
 void	ft_level_up(t_snake *snake)
 {
-	static const short upped_already;
+	short upped_already = 0;
 
-	upped_already = 0;
 	if (snake->length % LVLUP_LENGTH == 0)
 	{
 		if (!upped_already)

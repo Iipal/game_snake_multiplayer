@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 22:15:07 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 04:54:06 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/13 13:05:50 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_game_solo()
 {
-	ft_set_terminal();
+	ft_set_terminal_mode();
 	signal(SIGINT, ft_sighandler);
 	srand(time(NULL));
 
@@ -25,14 +25,14 @@ void	ft_game_solo()
 	char			animate;
 	short			snake_moved;
 
-	grid.x = game.width - 2;
-	grid.y = game.height - 3;
+	pos.x = game.width - 2;
+	pos.y = game.height - 3;
 	animate = 1;
 	snake_moved = 0;
 	ft_init_playfield();
 	ft_init_snake(&snake0);
 	clock_gettime(CLOCK_REALTIME, &time_start);
-	while (run)
+	while (g_run)
 	{
 		snake_moved = ft_process_key(&snake0);
 

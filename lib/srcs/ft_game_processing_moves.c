@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 03:02:14 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 04:22:04 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/13 13:18:38 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ short	ft_turn_up(t_snake *snake)
 		default: goto ret;
 	}
 	snake->new_dir = UP;
-	playfield[head->y][head->x] = body_seg;
+	g_playfield[head->move_y][head->move_x] = body_seg;
 ret:
 	return (success);
 }
@@ -49,7 +49,7 @@ short	ft_turn_down(t_snake *snake)
 		default: goto ret;
 	}
 	snake->new_dir = DOWN;
-	playfield[head->move_y][head->move_x] = body_seg;
+	g_playfield[head->move_y][head->move_x] = body_seg;
 ret:
 	return (success);
 }
@@ -70,7 +70,7 @@ short	ft_turn_left(t_snake *snake)
 		default: goto ret;
 	}
 	snake->new_dir = LEFT;
-	playfield[head->move_y][head->move_x] = body_seg;
+	g_playfield[head->move_y][head->move_x] = body_seg;
 ret:
 	return (success);
 }
@@ -91,7 +91,7 @@ short	ft_turn_right(t_snake *snake)
 		default: goto ret;
 	}
 	snake->new_dir = RIGHT;
-	playfield[head->move_y][head->move_x] = body_seg;
+	g_playfield[head->move_y][head->move_x] = body_seg;
 ret:
 	return (success);
 }
@@ -107,10 +107,10 @@ short	ft_process_key(t_snake *snake)
 	{
 		switch (c)
 		{
-			case KEY_UP:	snake_move = turn_up(snake);	break;
-			case KEY_DOWN:	snake_move = turn_down(snake);	break;
-			case KEY_LEFT:	snake_move = turn_left(snake);	break;
-			case KEY_RIGHT: snake_mode = turn_right(snake);	break;
+			case KEY_UP:	snake_move = ft_turn_up(snake);		break;
+			case KEY_DOWN:	snake_move = ft_turn_down(snake);	break;
+			case KEY_LEFT:	snake_move = ft_turn_left(snake);	break;
+			case KEY_RIGHT: snake_move = ft_turn_right(snake);	break;
 		}
 	}
 	return (snake_move);
@@ -134,13 +134,13 @@ void	ft_move_snake(t_snake *snake)
 	switch (head->dir)
 	{
 		case UP:	head->move_y--; head_ch = 'V'; break;
-		case DOWN:	head->move_v++; head_ch = '^'; break;
+		case DOWN:	head->move_y++; head_ch = '^'; break;
 		case LEFT:	head->move_x--; head_ch = '>'; break;
 		case RIGHT:	head->move_x++; head_ch = '<'; break;
 		default:	assert(0);
 	}
-	if (head->move_x < 0 || head->move_x >= x||
-			head->move_y < 0 || head->move_y >= y)
+	if (head->move_x < 0 || head->move_x >= pos.x||
+			head->move_y < 0 || head->move_y >= pos.y)
 	{
 		ft_reset_input_mode();
 		system("echo \"\\e[31mYou hit a wall. GAME OVER!\\e[0m\"");
@@ -148,7 +148,7 @@ void	ft_move_snake(t_snake *snake)
 		getchar();
 		exit(0);
 	}
-	g_playfield[head->row][head->col] = head_ch;
+	g_playfield[head->move_y][head->move_x] = head_ch;
 	if (snake->length_buff)
 	{
 		snake->length_buff--;
@@ -156,7 +156,7 @@ void	ft_move_snake(t_snake *snake)
 	}
 	else
 	{
-		g_playfield[trail->y][trail->x] = ' ';
+		g_playfield[tail->move_y][tail->move_x] = ' ';
 		switch (tail->dir)
 		{
 			case UP:	tail->move_y--; break;
@@ -165,7 +165,7 @@ void	ft_move_snake(t_snake *snake)
 			case RIGHT:	tail->move_x++; break;
 			default:	assert(0);
 		}
-		switch (g_playfield[tail->y][tail->x])
+		switch (g_playfield[tail->move_y][tail->move_x])
 		{
 			case '-': case '|': break;
 			case '/':
@@ -174,8 +174,8 @@ void	ft_move_snake(t_snake *snake)
 				{
 					case UP:	tail->dir = RIGHT;	break;
 					case DOWN:	tail->dir = LEFT;	break;
-					case LEFT:	tail->dir = DOWN;		break;
-					case RIGHT:	tail->dir = UP;	break;
+					case LEFT:	tail->dir = DOWN;	break;
+					case RIGHT:	tail->dir = UP;		break;
 					default:	assert(0);
 				}
 				break;
