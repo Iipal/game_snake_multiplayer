@@ -6,13 +6,13 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 22:15:07 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/14 00:27:02 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 00:31:55 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_game.h"
 
-void	ft_game_solo()
+void	ft_game_solo(void)
 {
 	t_snake			snake0;
 	struct timespec	time_start;
@@ -68,5 +68,4 @@ void	ft_game_solo()
 	for (int i = 0; i < pos.y; i++)
 		free(playfield[i]);
 	free(playfield);
-	exit(EXIT_SUCCESS);
 }

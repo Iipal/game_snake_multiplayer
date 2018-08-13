@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 15:31:59 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 15:30:31 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 00:40:23 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	ft_fswitches_swfread(short fread)
 void	ft_fsettings_fexample(void)
 {
 	printf("\tSettings file example:\n");
-	printf("%s%d\n%s%d\n%s%s\n", FSETTING_FWIDTH, DEFAULT_GRID,
-								FSETTING_FHEIGHT, DEFAULT_GRID,
+	printf("%s%d\n%s%d\n%s%s\n", FSETTING_FWIDTH, DEFAULT_GRID_WIDTH,
+								FSETTING_FHEIGHT, DEFAULT_GRID_HEIGHT,
 								FSETTING_FNICKNAME, DEFAULT_NICKNAME);
 }
 
@@ -136,7 +136,7 @@ void	ft_fsettings_fread_strparse(char *parse)
 	if (err)
 	{
 		ft_fsettings_fexample();
-		sleep(1);
+		sleep(2);
 		ft_settings_user(&us);
 	}
 }
@@ -181,17 +181,16 @@ short	ft_fsettings_fread_problem(void)
 
 	setsettings = 0;
 	sleep(1);
-	system("clear");
 	while (1)
 	{
-		printf("Apply default settings or do you configure everything yourself ?(d/y): ");
+		printf("Apply default settings ?(Y/n): ");
 		do
 		{
 			setsettings = getchar();
 			switch (setsettings)
 			{
-				case 'd': case 'D': return (SETTING_DEFAULT);
-				case 'y': case 'Y': return (SETTING_USER);
+				case 'y': case 'Y': return (SETTING_DEFAULT);
+				case 'n': case 'N': return (SETTING_USER);
 				default: system("echo \"\\e[31mKO.\\e[0m\""); break;
 			}
 		} while (1);

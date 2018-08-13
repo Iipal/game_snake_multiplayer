@@ -6,21 +6,20 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 14:51:03 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 15:28:17 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 00:39:23 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SETTINGS_H
 # define FT_SETTINGS_H
 
-# define BUFF_SIZE			32
+# define BUFF_SIZE				32
 
-# define GRID_MIN			10
-# define GRID_MAX			30
-# define SPEED_MIN			1
-# define SPEED_MAX 			5
+# define GRID_MIN				20
+# define GRID_MAX				90
 
-# define DEFAULT_GRID		12
+# define DEFAULT_GRID_WIDTH		80
+# define DEFAULT_GRID_HEIGHT	25
 # define DEFAULT_NICKNAME	"Player"
 
 typedef enum	e_settings

@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 14:52:45 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 15:32:50 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 00:41:51 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ void	ft_settings_change(short setting)
 
 void	ft_settings_default(t_game *def)
 {
-	def->width = DEFAULT_GRID;
-	def->height = DEFAULT_GRID;
-	def->nickname = strdup(DEFAULT_NICKNAME);
+	def->width		= DEFAULT_GRID_WIDTH;
+	def->height		= DEFAULT_GRID_HEIGHT;
+	def->nickname	= strdup(DEFAULT_NICKNAME);
 }
 
 char	*ft_settings_setnickname(char *nickname)
@@ -113,7 +113,7 @@ void	ft_settings_user(t_usersets	*us)
 	{
 		do
 		{
-			printf("Set game width (min 10 | max 30): ");
+			printf("Set game width (min %d | max %d): ", GRID_MIN, GRID_MAX);
 			scanf("%hi", &temp.width);
 			if (temp.width >= GRID_MIN && temp.width <= GRID_MAX)
 			{
@@ -129,7 +129,7 @@ void	ft_settings_user(t_usersets	*us)
 	{
 		do
 		{
-			printf("Set game height (min 10 | max 30): ");
+			printf("Set game height (min %d | max %d): ", GRID_MIN, GRID_MAX);
 			scanf("%hi", &temp.height);
 			if (temp.height >= GRID_MIN && temp.height <= GRID_MAX)
 			{

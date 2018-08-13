@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 20:32:54 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 15:31:17 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 00:37:10 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ short	ft_menu_settings(void)
 	settings = FT_ERROR;
 	system("clear");
 	printf("\tSettings:\n");
-	printf("\t 1. Set game width  (current: %hi). ( min 10 | max 30 )\n", game.width);
-	printf("\t 2. Set game height (current: %hi). ( min 10 | max 30 )\n", game.height);
+	printf("\t 1. Set game width  (current: %hi). ( min %d | max %d )\n", game.width, GRID_MIN, GRID_MAX);
+	printf("\t 2. Set game height (current: %hi). ( min %d | max %d )\n", game.height, GRID_MIN, GRID_MAX);
 	printf("\t 4. Change nickname (current: %s).\n", game.nickname);
 	printf("\t 5. Set default settings.\n\n");
 	printf("\t 0. Exit to main menu.\n");
