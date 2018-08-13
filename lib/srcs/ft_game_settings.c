@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 14:52:45 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/14 00:41:51 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 01:35:47 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_settings_change(short setting)
 	{
 		case SETTING_WIDTH:
 		{
-			printf("\tSet X to: ");
+			printf("\tSet width to: ");
 			scanf("%hi", &temp.width);
 			if (temp.width >= GRID_MIN && temp.width <= GRID_MAX)
 			{
@@ -44,7 +44,7 @@ void	ft_settings_change(short setting)
 		}
 		case SETTING_HEIGHT:
 		{
-			printf("\tSet Y to: ");
+			printf("\tSet height to: ");
 			scanf("%hi", &temp.height);
 			if (temp.height >= GRID_MIN && temp.height <= GRID_MAX)
 			{
@@ -55,7 +55,7 @@ void	ft_settings_change(short setting)
 			else
 			{
 				err++;
-				system("echo \"\\e[31mWrong setting for X.\\e[0m\"");
+				system("echo \"\\e[31mWrong setting for height.\\e[0m\"");
 				sleep(1);
 			}
 			break;
@@ -69,7 +69,7 @@ void	ft_settings_change(short setting)
 		}
 		case SETTING_DEFAULT:
 		{
-			system("echo \"e[32mSettings is set default, success.\\e[0m\"");
+			system("echo \"\\e[32mSettings is set default, success.\\e[0m\"");
 			ft_settings_default(&game);
 			sleep(1);
 			break;
