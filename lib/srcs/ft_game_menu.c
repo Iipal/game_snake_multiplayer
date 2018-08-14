@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 20:32:54 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/14 14:19:07 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 17:28:11 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void	ft_switches_gamemode(short gamemode)
 		switch (gamemode)
 		{
 			case MODE_SOLO: ft_game_solo(); break;
-			case MODE_BOT:	ft_game_bot(); break;
-			case MODE_PVP:	ft_game_pvp(); break;
+			case MODE_BOT:	ft_game_bot();	break;
+			case MODE_PVP:	ft_game_pvp();	break;
 			case MODE_EXIT:	ft_switches_main(ft_menu_main()); break;
 			default:
 			{

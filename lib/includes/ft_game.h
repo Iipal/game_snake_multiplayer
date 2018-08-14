@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 23:21:54 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/14 00:27:48 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 17:52:57 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,19 @@
 # include <stdio.h>
 # include <time.h>
 
-# define BILLION		1000000000
-
-
-# define FOOD_RARITY	512
-# define LVLUP_LENGTH	50
-
 enum
 {
 	KEY_UP 		= 0x415b1b,
 	KEY_DOWN 	= 0x425b1b,
 	KEY_RIGHT 	= 0x435b1b,
 	KEY_LEFT 	= 0x445b1b
+};
+
+enum
+{
+	BILLION = 1000000000,
+	FOOD_RARITY = 512,
+	LVLUP_LENGTH = 50
 };
 
 typedef struct	s_game
@@ -67,7 +68,7 @@ typedef struct	s_snake
 	unsigned long	length_buff;
 }				t_snake;
 
-typedef	struct	s_pos
+typedef struct	s_pos
 {
 	short	x;
 	short	y;
@@ -86,6 +87,7 @@ short	ft_turn_left(t_snake *snake, char **g_playfield);
 short	ft_turn_right(t_snake *snake, char **g_playfield);
 short	ft_process_key(t_snake *snake, char **g_playfield);
 
+void	ft_start_solo(void);
 void	ft_game_solo(void);
 void	ft_game_bot(void);
 void	ft_game_pvp(void);

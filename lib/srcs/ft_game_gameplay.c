@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 04:22:21 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 22:23:12 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 17:53:18 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_generate_food(char **g_playfield)
 {
-	short	max_food = (pos.x * pos.y) / FOOD_RARITY + 1;
+	const int	max_food = (pos.x * pos.y) / FOOD_RARITY + 1;
 	short				gen_y;
 	short				gen_x;
 

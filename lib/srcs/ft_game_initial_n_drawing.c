@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 03:27:58 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/13 22:57:53 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 17:50:35 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_init_playfield(char **g_playfield)
 void	ft_init_snake(t_snake *snake, char **g_playfield)
 {
 	g_playfield[pos.y / 2][pos.x / 2] = '<';
-	snake->head.move_x = pos.y / 2;
-	snake->head.move_y = pos.x / 2;
+	snake->head.move_y = pos.y / 2;
+	snake->head.move_x = pos.x / 2;
 	snake->head.dir = RIGHT;
 	snake->tail.move_x = pos.x / 2;
 	snake->tail.move_y = pos.y / 2;

@@ -6,15 +6,15 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 23:19:18 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/14 14:24:12 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 17:33:27 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MENU_H
 # define FT_MENU_H
 
-# define ECHO_OK(str) "echo -e \"\\e[32m" str "\\e[0m\""
-# define ECHO_KO(str) "echo -e \"\\e[31m" str "\\e[0m\""
+# define ECHO_OK(str) "echo \"\\e[32m" str "\\e[0m\""
+# define ECHO_KO(str) "echo \"\\e[31m" str "\\e[0m\""
 
 typedef enum	e_gamemode
 {
