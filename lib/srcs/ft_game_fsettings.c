@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 15:31:59 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/14 00:40:23 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 14:16:09 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	ft_fswitches_swfread(short fread)
 	{
 		case FT_SUCCESS:
 		{
-			system("echo \"\\e[32mDone.\\e[0m\"");
+			system(ECHO_OK("DONE."));
 			sleep(1);
 			ft_switches_main(ft_menu_main());
 			break;
 		}
 		case FT_ERROR:
 		{
-			system("echo \"\\e[31mKO.\\e[0m\"");
+			system(ECHO_KO("KO"));
 			printf("Problems with file reading.\n");
 			ft_fswitches_swfread(ft_fsettings_fread_problem());
 			break;
@@ -39,7 +39,7 @@ void	ft_fswitches_swfread(short fread)
 		case SETTING_DEFAULT:
 		{
 			ft_settings_default(&game);
-			system("echo \"\\e[32mDefault settings is apllied.\\e[0m\"");
+			system(ECHO_OK("Default settings is apllied."));
 			sleep(1);
 			ft_fsettings_fsave();
 			sleep(1);
@@ -92,7 +92,7 @@ void	ft_fsettings_fread_strparse_data(char *parse, char fp_set)
 				case 'W': game.width = atoi(fp_temp); break;
 				case 'H': game.height = atoi(fp_temp); break;
 				case 'N': game.nickname = strdup(fp_temp); break;
-				default: printf("Someting is wrong...\n"); break;
+				default: system(ECHO_KO("Someting is wrong...")); break;
 			}
 			break;
 		}
@@ -115,7 +115,7 @@ void	ft_fsettings_fread_strparse(char *parse)
 	{
 		err++;
 		us.USERSETS_WIDTH = 1;
-		system("echo \"\\e[31mWrong settings name for width.\\e[0m\"");
+		system(ECHO_KO("Wrong settings name for width."));
 	}
 	if ((fp_temp = strstr(parse, FSETTING_FHEIGHT)) != NULL)
 		ft_fsettings_fread_strparse_data(fp_temp, 'H');
@@ -123,7 +123,7 @@ void	ft_fsettings_fread_strparse(char *parse)
 	{
 		err++;
 		us.USERSETS_HEIGHT = 1;
-		system("echo \"\\e[31mWrong settings name for height.\\e[0m\"");
+		system(ECHO_KO("Wrong settings name for height."));
 	}
 	if ((fp_temp = strstr(parse, FSETTING_FNICKNAME)) != NULL)
 		ft_fsettings_fread_strparse_data(fp_temp, 'N');
@@ -131,7 +131,7 @@ void	ft_fsettings_fread_strparse(char *parse)
 	{
 		err++;
 		us.USERSETS_NICKNAME = 1;
-		system("echo \"\\e[31mWrong settings name for nickname\\e[0m\"");
+		system(ECHO_KO("Wrong settings name for nickname."));
 	}
 	if (err)
 	{
@@ -168,7 +168,7 @@ short	ft_fsettings_fread(void)
 	}
 	else
 	{
-		system("echo \"\\e[31mSettings file doesn't exist.\\e[0m\"");
+		system(ECHO_KO("Settings file doesn't exist."));
 		ft_fswitches_swfread(ft_fsettings_fread_problem());
 	}
 	fclose(readfile);
@@ -191,7 +191,7 @@ short	ft_fsettings_fread_problem(void)
 			{
 				case 'y': case 'Y': return (SETTING_DEFAULT);
 				case 'n': case 'N': return (SETTING_USER);
-				default: system("echo \"\\e[31mKO.\\e[0m\""); break;
+				default: system(ECHO_KO("KO.")); break;
 			}
 		} while (1);
 	}
@@ -208,12 +208,12 @@ void	ft_fsettings_fsave(void)
 		fprintf(savefile, "%s%hi\n", FSETTING_FWIDTH, game.width);
 		fprintf(savefile, "%s%hi\n", FSETTING_FHEIGHT, game.height);
 		fprintf(savefile, "%s%s\n", FSETTING_FNICKNAME, game.nickname);
-		system("echo \"\\e[32mSettings saved.\\e[0m\"");
+		system(ECHO_OK("Settings saved."));
 		sleep(1);
 	}
 	else
 	{
-		system("echo \"\\e[31mCannot open or create settings file.\\e[0m\"");
+		system(ECHO_KO("Cannot open or create settings file."));
 		sleep(1);
 	}
 	fclose(savefile);

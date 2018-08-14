@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 14:52:45 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/14 01:35:47 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 14:23:20 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	ft_settings_change(short setting)
 			if (temp.width >= GRID_MIN && temp.width <= GRID_MAX)
 			{
 				game.width = temp.width;
-				system("echo \"\\e[32mWidth settings saved.\\e[0m\"");
+				system(ECHO_OK("Width settings saved."));
 				sleep(1);
 			}
 			else
 			{
 				err++;
-				system("echo \"\\e[31mWrong setting for width.\\e[0m\"");
+				system(ECHO_KO("Wrong setting for width."));
 				sleep(1);
 			}
 			break;
@@ -49,13 +49,13 @@ void	ft_settings_change(short setting)
 			if (temp.height >= GRID_MIN && temp.height <= GRID_MAX)
 			{
 				game.height = temp.height;
-				system("echo \"\\e[32mHeight settings saved.\\e[0m\"");
+				system(ECHO_OK("Height settings saved."));
 				sleep(1);
 			}
 			else
 			{
 				err++;
-				system("echo \"\\e[31mWrong setting for height.\\e[0m\"");
+				system(ECHO_KO("Wrong setting for height."));
 				sleep(1);
 			}
 			break;
@@ -69,7 +69,7 @@ void	ft_settings_change(short setting)
 		}
 		case SETTING_DEFAULT:
 		{
-			system("echo \"\\e[32mSettings is set default, success.\\e[0m\"");
+			system(ECHO_OK("Settings is set default, success."));
 			ft_settings_default(&game);
 			sleep(1);
 			break;
@@ -97,7 +97,7 @@ char	*ft_settings_setnickname(char *nickname)
 			if (nickname != NULL && *nickname != 0)
 				return (nickname);
 			else
-				system("echo \"\\e[31mWrong nickname.\\e[0m\"");
+				system(ECHO_KO("Wrong nickname."));
 		} while (1);
 	}
 	return (NULL);
@@ -117,12 +117,12 @@ void	ft_settings_user(t_usersets	*us)
 			scanf("%hi", &temp.width);
 			if (temp.width >= GRID_MIN && temp.width <= GRID_MAX)
 			{
-				system("echo \"\\e[32mOK.\\e[0m\"");
+				system(ECHO_OK("OK."));
 				game.width = temp.width;
 				break;
 			}
 			else
-				system("echo \"\\e[31mKO.\\e[0m\"");
+				system(ECHO_KO("KO."));
 		} while (1);
 	}
 	if (us->USERSETS_HEIGHT == 1)
@@ -133,12 +133,12 @@ void	ft_settings_user(t_usersets	*us)
 			scanf("%hi", &temp.height);
 			if (temp.height >= GRID_MIN && temp.height <= GRID_MAX)
 			{
-				system("echo \"\\e[32mOK.\\e[0m\"");
+				system(ECHO_OK("OK."));
 				game.height = temp.height;
 				break;
 			}
 			else
-				system("echo \"\\e[31mKO.\\e[0m\"");
+				system(ECHO_KO("KO."));
 		} while (1);
 	}
 	if (us->USERSETS_NICKNAME == 1)
@@ -149,12 +149,12 @@ void	ft_settings_user(t_usersets	*us)
 			scanf("%s", tmpnn);
 			if (tmpnn[0] != '\0' && tmpnn != 0)
 			{
-				system("echo \"\\e[32mOK.\\e[0m\"");
+				system(ECHO_OK("OK."));
 				game.nickname = strdup(tmpnn);
 				break;
 			}
 			else
-			system("echo \"\\e[31mKO.\\e[0m\"");
+				system(ECHO_KO("KO."));
 		} while (1);
 	}
 	free(tmpnn);

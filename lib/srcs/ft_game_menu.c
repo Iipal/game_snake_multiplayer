@@ -6,7 +6,7 @@
 /*   By: _ipal <malkoleyplay@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 20:32:54 by _ipal             #+#    #+#             */
-/*   Updated: 2018/08/14 01:35:04 by _ipal            ###   ########.fr       */
+/*   Updated: 2018/08/14 14:19:07 by _ipal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ short	ft_menu_gamemode(void)
 	printf("\t\tChoose game mode:\n");
 	printf("\tCooperative:\n");
 	printf("\t 1. Solo.\n");
-	printf("\t 2. Player1 vs Bot\n");
+	printf("\t 2. %s vs Bot\n", game.nickname);
 	printf("\tMultiplayer:\n");
-	printf("\t 3. Player1 vs Player2\n\n");
+	printf("\t 3. %s vs Player2\n\n", game.nickname);
 	printf("\t 0. Exit to main menu\n");
 	printf("\tChoose something: ");
 	scanf("%hi", &gamemode);
@@ -83,7 +83,7 @@ void	ft_switches_main(short menu)
 			}
 			default:
 			{
-				system("echo \"\\e[31mWrong input!\\e[0m\"");
+				system(ECHO_KO("Wrong input!"));
 				sleep(1);
 				system("clear");
 				exit(EXIT_SUCCESS);
@@ -104,7 +104,7 @@ void	ft_switches_gamemode(short gamemode)
 			case MODE_EXIT:	ft_switches_main(ft_menu_main()); break;
 			default:
 			{
-				system("echo \"\\e[31mWrong input!!\\e[0m\"");
+				system(ECHO_KO("Wrong input!!"));
 				sleep(1);
 				system("clear");
 				break;
