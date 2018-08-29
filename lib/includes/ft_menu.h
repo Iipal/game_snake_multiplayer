@@ -13,8 +13,8 @@
 #ifndef FT_MENU_H
 # define FT_MENU_H
 
-# define ECHO_OK(str) "echo \"\\e[32m" str "\\e[0m\""
-# define ECHO_KO(str) "echo \"\\e[31m" str "\\e[0m\""
+# define ECHO_OK(str) "echo \"\033[0;32m" str "\033[0m\""
+# define ECHO_KO(str) "echo \"\033[0;31m" str "\033[0m\""
 
 typedef enum	e_gamemode
 {
