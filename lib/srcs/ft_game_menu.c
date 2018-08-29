@@ -42,7 +42,7 @@ short	ft_menu_gamemode(void)
 	printf("\t 1. Solo.\n");
 	printf("\t 2. %s vs Bot\n", game.nickname);
 	printf("\tMultiplayer:\n");
-	printf("\t 3. %s vs Player2\n\n", game.nickname);
+	printf("\t 3. %s vs Player\n\n", game.nickname);
 	printf("\t 0. Exit to main menu\n");
 	printf("\tChoose something: ");
 	scanf("%hi", &gamemode);
